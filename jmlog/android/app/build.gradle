@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.jmlog"
+    namespace = "net.yugu0202.jmlog"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
