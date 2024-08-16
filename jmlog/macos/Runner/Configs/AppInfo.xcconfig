@@ -8,7 +8,7 @@
 PRODUCT_NAME = jmlog
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.jmlog
+PRODUCT_BUNDLE_IDENTIFIER = net.yugu0202.jmlog
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2024 com.example. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2024 net.yugu0202. All rights reserved.
