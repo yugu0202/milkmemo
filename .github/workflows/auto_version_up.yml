@@ -60,17 +60,9 @@ jobs:
             - name: Create New Branch And Push
               uses: EndBug/add-and-commit@v7
               with:
-                branch: version/v${{ env.NEW_VERSION }}
+                new_branch: version/v${{ env.NEW_VERSION }}
                 message: "Version up to v${{ env.NEW_VERSION }}"
                 add: ${{ env.FILE_PATH }}
 
             - name: Create PR
-              uses: repo-sync/pull-request@v3
-              with:
-                token: ${{ secrets.GITHUB_TOKEN }}
-                source_branch: version/v${{ env.NEW_VERSION }}
-                target_branch: ${{ github.event.pull_request.head.ref }}
-                title: "Version up to v${{ env.NEW_VERSION }}"
-                body: "Version up to v${{ env.NEW_VERSION }}"
-                draft: false
-                maintainer_can_modify: true
+              run: gh pr create --title "Version up to v${{ env.NEW_VERSION }}" --body "Auto version up to v${{ env.NEW_VERSION }}" --base ${{ github.event.pull_request.head.ref }} --head version/v${{ env.NEW_VERSION }}
