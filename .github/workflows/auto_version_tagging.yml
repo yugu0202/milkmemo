@@ -32,11 +32,7 @@ jobs:
                 echo "Tag v${VERSION%+*} already exists."
                 exit 1
             fi
-            git config --local user.name "${{ github.actor }}"
-            git config --local user.email "${{ github.actor }}@users.noreply.github.com"
-            git tag -a "v${VERSION%+*}" -m "Version ${VERSION%+*}"
-            git push origin "v${VERSION%+*}"
-            echo "VERSION=${VERSION%+*}" >> $GITHUB_ENV
+            echo "VERSION=${VERSION%+*}" >> $GITHUB_OUTPUT
 
         - name: Create Release
           if: success()
@@ -44,4 +40,4 @@ jobs:
             GH_TOKEN: ${{ github.token }}
           run: |
             VERSION=${{ steps.auto_version_tagging.outputs.VERSION }}
-            echo "# Version ${VERSION}\n## Changes\n- {{ github.event.pull_request.title }} [${{ github.event.pull_request.number }}](${{ github.event.pull_request.html_url }})" | gh release create "v${VERSION}" -F - -t "v${VERSION}"
+            echo "# Version ${VERSION}\n## Changes\n- ${{ github.event.pull_request.title }} [${{ github.event.pull_request.number }}](${{ github.event.pull_request.html_url }})" | gh release create "v${VERSION}" -t "v${VERSION}" -F=-
