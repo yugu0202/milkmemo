@@ -42,7 +42,7 @@ jobs:
             - name: Auto Version Up
               id: auto_version_up
               run: |
-                OLD_VERSION=$(grep -oP 'version: \K[0-9]+\.[0-9]+\.[0-9]+\+[0-9]+' ${{ env.FILE_PATH }})
+                OLD_VERSION=$(grep -oP 'version: \K[0-9]+\.[0-9]+\.[0-9]+' ${{ env.FILE_PATH }})
                 IFS='.' read -r -a version_parts <<< "${OLD_VERSION%+*}"
                 new_mejor=${version_parts[0]}
                 new_minor=${version_parts[1]}
