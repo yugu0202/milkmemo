@@ -5,6 +5,8 @@ on:
             - opened
         branches:
             - main
+        paths:
+            - '!.github/workflows/*'
 
 permissions:
     contents: write
@@ -20,7 +22,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
               with:
-                ref: ${{ github.event.pull_request.head.ref }}
+                ref: ${{ github.head_ref }}
                 fetch-depth: 0
 
             - name: Determine version type from PR title
