@@ -1,0 +1,42 @@
+name: Auto Version Tagging
+on:
+    pull_request:
+        branches:
+            - main
+        types: 
+            - closed
+
+jobs:
+    create_version_tag:
+        if: github.event.pull_request.merged == true
+        runs-on: ubuntu-latest
+        env:
+            FILE_PATH: jmlog/pubspec.yaml
+            TZ: 'Asia/Tokyo'
+        steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+          with:
+            ref: ${{ github.ref }}
+            fetch-depth: 0
+    
+        - name: Auto Version Tagging
+          id: auto_version_tagging
+          run: |
+            TAGS=$(`git tag`)
+            VERSION=$(grep -oP 'version: \K[0-9]+\.[0-9]+\.[0-9]+' ${{ env.FILE_PATH }})
+            if printf '%s\n' "${TAGS[@]}" | grep -q "^v${VERSION%+*}"; then
+                echo "Tag v${VERSION%+*} already exists."
+                exit 1
+            fi
+            git tag -a "v${VERSION%+*}" -m "Version ${VERSION%+*}"
+            git push origin "v${VERSION%+*}"
+            echo "VERSION=${VERSION%+*}" >> $GITHUB_ENV
+
+        - name: Create Release
+          if: success()
+          env:
+            GH_TOKEN: ${{ github.token }}
+          run: |
+            VERSION=${{ steps.auto_version_tagging.outputs.VERSION }}
+            echo "# Version ${VERSION}\nFeature {{ github.event.pull_request.title }} [${{ github.event.pull_request.number }}](${{ github.event.pull_request.html_url }})" | gh release create "v${VERSION}" -F - -t "v${VERSION}"
