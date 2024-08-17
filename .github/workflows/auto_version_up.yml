@@ -58,7 +58,7 @@ jobs:
                 sed -i "s/version: ${OLD_VERSION}/version: ${NEW_VERSION}/" ${{ env.FILE_PATH }}
             
             - name: Create New Branch And Push
-              uses: EndBug/add-and-commit@v7
+              uses: EndBug/add-and-commit@v9
               with:
                 new_branch: version/v${{ env.NEW_VERSION }}
                 message: "Version up to v${{ env.NEW_VERSION }}"
