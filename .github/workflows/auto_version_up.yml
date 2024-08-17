@@ -1,0 +1,76 @@
+name: Auto Version Up
+on:
+    pull_request:
+        types:
+            - opened
+        branches:
+            - main
+
+jobs:
+    create_version_up_pr:
+        runs-on: ubuntu-latest
+        env:
+            FILE_PATH: jmlog/pubspec.yaml
+            TZ: 'Asia/Tokyo'
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Determine version type from PR title
+              id: determine_version_type
+              run: |
+                PR_TITLE="${{ github.event.pull_request.title }}"
+                if [[ "${PR_TITLE}" =~ ^\[major\] ]]; then
+                    echo "major"
+                elif [[ "${PR_TITLE}" =~ ^\[minor\] ]]; then
+                    echo "minor"
+                elif [[ "${PR_TITLE}" =~ ^\[patch\] ]]; then
+                    echo "patch"
+                else
+                    echo "patch"
+                fi
+
+            - name: Auto Version Up
+              run: |
+                OLD_VERSION=$(grep -oP 'version: \K[0-9]+\.[0-9]+\.[0-9]+' ${{ env.FILE_PATH }})
+                IFS='.' read -r -a version_parts <<< "${OLD_VERSION%+*}"
+                IFS='+' read -r -a build_parts <<< "${OLD_VERSION##*.}"
+                new_build=$(( build_parts[1] + 1 ))
+                new_mejor=${version_parts[0]}
+                new_minor=${version_parts[1]}
+                new_patch=${version_parts[2]}
+                case "${{ steps.determine_version_type.outputs.result }}" in
+                    major)
+                        new_mejor=$(( new_mejor + 1 ))
+                        new_minor=0
+                        new_patch=0
+                        ;;
+                    minor)
+                        new_minor=$(( new_minor + 1 ))
+                        new_patch=0
+                        ;;
+                    patch)
+                        new_patch=$(( new_patch + 1 ))
+                        ;;
+                esac
+                NEW_VERSION="${new_mejor}.${new_minor}.${new_patch}+${new_build}"
+                echo "NEW_VERSION=${NEW_VERSION}" >> $GITHUB_ENV
+                sed -i "s/version: ${OLD_VERSION}/version: ${NEW_VERSION}/" ${{ env.FILE_PATH }}
+            
+            - name: Create New Branch And Push
+              uses: EndBug/add-and-commit@v7
+              with:
+                branch: version/v${{ env.NEW_VERSION }}
+                message: "Version up to v${{ env.NEW_VERSION }}"
+                add: ${{ env.FILE_PATH }}
+
+            - name: Create PR
+              uses: repo-sync/pull-request@v3
+              with:
+                token: ${{ secrets.GITHUB_TOKEN }}
+                source_branch: version/v${{ env.NEW_VERSION }}
+                target_branch: ${{ github.event.pull_request.head.ref }}
+                title: "Version up to v${{ env.NEW_VERSION }}"
+                body: "Version up to v${{ env.NEW_VERSION }}"
+                draft: false
+                maintainer_can_modify: true
