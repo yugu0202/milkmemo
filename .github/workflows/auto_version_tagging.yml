@@ -30,12 +30,12 @@ jobs:
             VERSION=$(grep -oP 'version: \K[0-9]+\.[0-9]+\.[0-9]+' ${{ env.FILE_PATH }})
             if printf '%s\n' "${TAGS[@]}" | grep -q "^v${VERSION%+*}"; then
                 echo "Tag v${VERSION%+*} already exists."
-                exit 1
+                echo "VERSION=already exists" >> $GITHUB_OUTPUT
             fi
             echo "VERSION=${VERSION%+*}" >> $GITHUB_OUTPUT
 
         - name: Create Release
-          if: success()
+          if: steps.auto_version_tagging.outputs.VERSION != 'already exists'
           env:
             GH_TOKEN: ${{ github.token }}
           run: |
