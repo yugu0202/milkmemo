@@ -1,16 +1,32 @@
 # jmlog
 
-A new Flutter project.
+牛乳の評価を記録するためのアプリ
 
-## Getting Started
+## ディレクトリ構成
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```shell
+lib
+├── main.dart
+├── core
+|   ├── constants
+│   ├── exceptions
+│   └── utils
+├── data
+│   ├── models
+│   ├── repositories
+│   └── services
+├── domain
+│   ├── entities
+│   ├── repositories
+│   └── use_cases
+├── presentation
+│   ├── view_models
+│   ├── views
+│   │   ├── common
+│   │   └── feature
+│   └── widgets
+│       ├── common
+│       └── feature
+├── routes
+└── di
+```

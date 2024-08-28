@@ -1,0 +1,3 @@
+# /lib/presentation/widgets
+
+ウィジェットコンポーネントをいれるフォルダ
