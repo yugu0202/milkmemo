@@ -8,7 +8,7 @@
 lib
 ├── main.dart
 ├── core
-|   ├── constants
+│   ├── constants
 │   ├── exceptions
 │   └── utils
 ├── data
