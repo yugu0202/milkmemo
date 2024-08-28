@@ -1,3 +1,3 @@
 # /lib/presentation/view_models
 
-Riverpodを使用したViewModelをいれるフォルダ
+Riverpodを使用したViewModelをいれるディレクトリ
