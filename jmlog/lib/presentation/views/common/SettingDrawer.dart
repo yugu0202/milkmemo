@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SettingDrawer extends StatelessWidget {
-  SettingDrawer();
+  const SettingDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
