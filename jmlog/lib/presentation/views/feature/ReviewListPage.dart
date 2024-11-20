@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jmlog/presentation/view_models/ReviewProvider.dart';
+import 'package:jmlog/core/constants/ConstColor.dart';
 
 class ReviewListPage extends ConsumerWidget {
   const ReviewListPage({Key? key}) : super(key: key);
@@ -26,6 +27,7 @@ class ReviewListPage extends ConsumerWidget {
                     reviews[index].name.toString(),
                   ),
                 ),
+                tileColor: jmlogColorScheme.surfaceContainer,
               ),
             );
           },
