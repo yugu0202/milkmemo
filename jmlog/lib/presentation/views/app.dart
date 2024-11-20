@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:jmlog/core/constants/const_color.dart';
 import 'package:jmlog/presentation/views/common/setting_drawer.dart';
@@ -10,13 +11,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'JMLog',
-      theme: ThemeData(
-        colorScheme: jmlogColorScheme,
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'JMLog'),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      builder: (_, child) {
+        return MaterialApp(
+          title: 'JMLog',
+          theme: ThemeData(
+            colorScheme: jmlogColorScheme,
+            useMaterial3: true,
+          ),
+          home: child,
+        );
+      },
+      child: const MyHomePage(title: 'JMLog'),
     );
   }
 }
@@ -33,7 +40,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   static const screens = <Widget>[
-    ReviewListPage(),
+    Column(children: [SearchBar(), SizedBox(height: 8,), Expanded(child: ReviewListPage())],),
     Text('Search'),
     Text('Favorites'),
   ];

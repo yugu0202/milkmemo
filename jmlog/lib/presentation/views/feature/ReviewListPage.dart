@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jmlog/presentation/view_models/ReviewProvider.dart';
 import 'package:jmlog/core/constants/ConstColor.dart';
@@ -18,16 +19,20 @@ class ReviewListPage extends ConsumerWidget {
         return ListView.builder(
           itemCount: reviews.length,
           itemBuilder: (context, index) {
-            return SizedBox(
-              height: 50,
-              child: ListTile(
-                onTap: () { print("${reviews[index].taste} star"); },
-                title: Center(
-                  child: Text(
-                    reviews[index].name.toString(),
+            return Align(
+              alignment: Alignment.center,
+              child: SizedBox(
+                height: 72.h,
+                width: 360.w,
+                child: ListTile(
+                  onTap: () { print("${reviews[index].taste} star"); },
+                  title: Center(
+                    child: Text(
+                      reviews[index].name.toString(),
+                    ),
                   ),
+                  tileColor: jmlogColorScheme.surfaceContainer,
                 ),
-                tileColor: jmlogColorScheme.surfaceContainer,
               ),
             );
           },
