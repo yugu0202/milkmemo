@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:jmlog/core/constants/const_color.dart';
 import 'package:jmlog/presentation/views/common/setting_drawer.dart';
+import 'package:jmlog/presentation/views/feature/review_list_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -32,7 +33,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   static const screens = <Widget>[
-    Text('Home'),
+    ReviewListPage(),
     Text('Search'),
     Text('Favorites'),
   ];
