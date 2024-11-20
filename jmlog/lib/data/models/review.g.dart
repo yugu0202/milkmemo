@@ -7,14 +7,14 @@ part of 'review.dart';
 // **************************************************************************
 
 _$ReviewImpl _$$ReviewImplFromJson(Map<String, dynamic> json) => _$ReviewImpl(
-      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
       taste: (json['taste'] as num).toInt(),
       date: const DateTimeConverter().fromJson(json['date'] as Timestamp),
     );
 
 Map<String, dynamic> _$$ReviewImplToJson(_$ReviewImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'name': instance.name,
       'taste': instance.taste,
       'date': const DateTimeConverter().toJson(instance.date),
     };

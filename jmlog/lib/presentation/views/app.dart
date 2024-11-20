@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:jmlog/core/constants/const_color.dart';
 import 'package:jmlog/presentation/views/common/setting_drawer.dart';
-import 'package:jmlog/presentation/views/feature/review_list_page.dart';
+import 'package:jmlog/presentation/views/feature/ReviewListPage.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -53,12 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       drawer: const SettingDrawer(),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            screens.elementAt(_selectedIndex),
-          ],
-        ),
+        child: screens.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: _onItemTapped,

@@ -3,13 +3,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:jmlog/data/models/review.dart';
 
 class ReviewRepository {
-  Future<List<Review>> getReviews() async {
+  Future<List<Review>> getReviews(String id) async {
     final firestore = FirebaseFirestore.instanceFor(
         app: Firebase.app(), databaseId: 'jmlog-firestore');
     try {
       final snapShot = await firestore
           .collection('users')
-          .doc('iYtCCj0EW8krYHv1Vowa')
+          .doc(id)
           .collection('reviews')
           .get();
       final reviews = <Review>[];
