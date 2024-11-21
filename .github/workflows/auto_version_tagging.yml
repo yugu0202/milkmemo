@@ -41,4 +41,4 @@ jobs:
             GH_TOKEN: ${{ github.token }}
           run: |
             VERSION=${{ steps.auto_version_tagging.outputs.VERSION }}
-            echo -e "# Version ${VERSION}\n## Changes\n- [${{ github.event.pull_request.title }} #${{ github.event.pull_request.number }}](${{ github.event.pull_request.html_url }})" | gh release create "v${VERSION}" -t "v${VERSION}" --body-file=-
+            echo -e "# Version ${VERSION}\n## Changes\n- [${{ github.event.pull_request.title }} #${{ github.event.pull_request.number }}](${{ github.event.pull_request.html_url }})" | gh release create "v${VERSION}" -t "v${VERSION}" -F=-
