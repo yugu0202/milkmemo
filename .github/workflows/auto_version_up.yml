@@ -78,4 +78,4 @@ jobs:
                 GH_TOKEN: ${{ github.token }}
               run: |
                 NEW_VERSION="${{ steps.auto_version_up.outputs.NEW_VERSION }}"
-                echo -e "# Version up to v${{ NEW_VERSION }}\nTriggered by ${{ github.event.pull_request.url }}" | gh pr create --title "Version up to v${NEW_VERSION}" --base ${{ github.event.pull_request.head.ref }} --head version/v${NEW_VERSION} --body-file=-
+                echo -e "# Version up to v$NEW_VERSION\nTriggered by ${{ github.event.pull_request.url }}" | gh pr create --title "Version up to v${NEW_VERSION}" --base ${{ github.event.pull_request.head.ref }} --head version/v${NEW_VERSION} --body-file=-
