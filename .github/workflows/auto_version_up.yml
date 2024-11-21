@@ -5,8 +5,8 @@ on:
             - opened
         branches:
             - main
-        paths:
-            - '!.github/workflows/**'
+        paths-ignore:
+            - '.github/workflows/**'
 
 permissions:
     contents: write
