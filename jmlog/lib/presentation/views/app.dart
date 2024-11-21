@@ -40,7 +40,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   static const screens = <Widget>[
-    Column(children: [SearchBar(), SizedBox(height: 8,), Expanded(child: ReviewListPage())],),
+    ReviewListPage(),
     Text('Search'),
     Text('Favorites'),
   ];
@@ -54,9 +54,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: jmlogColorScheme.onPrimary,
       appBar: AppBar(
         title: Text(widget.title),
-        backgroundColor: jmlogColorScheme.surfaceContainer,
+        backgroundColor: jmlogColorScheme.surface,
       ),
       drawer: const SettingDrawer(),
       body: Center(
@@ -64,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: _onItemTapped,
-        backgroundColor: jmlogColorScheme.surfaceContainer,
+        backgroundColor: jmlogColorScheme.surface,
         indicatorColor: jmlogColorScheme.secondaryContainer,
         selectedIndex: _selectedIndex,
         destinations: const <Widget>[
