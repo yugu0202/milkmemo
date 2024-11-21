@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:jmlog/core/constants/ConstColor.dart';
-import 'package:jmlog/presentation/views/common/SettingDrawer.dart';
+import 'package:jmlog/core/constants/const_color.dart';
+import 'package:jmlog/presentation/views/common/setting_drawer.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, Key? key});
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         backgroundColor: jmlogColorScheme.surfaceContainer,
       ),
-      drawer: SettingDrawer(),
+      drawer: const SettingDrawer(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
