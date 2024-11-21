@@ -13,9 +13,9 @@ class ReviewRepository {
           .collection('reviews')
           .get();
       final reviews = <Review>[];
-      snapShot.docs.forEach((content) {
+      for (final content in snapShot.docs) {
         reviews.add(Review.fromJson(content.data()));
-      });
+      }
       return reviews;
     } on FirebaseException catch (e) {
       throw e.toString();

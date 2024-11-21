@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:jmlog/core/constants/const_color.dart';
 import 'package:jmlog/presentation/views/common/setting_drawer.dart';
-import 'package:jmlog/presentation/views/feature/ReviewListPage.dart';
+import 'package:jmlog/presentation/views/feature/review_list_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

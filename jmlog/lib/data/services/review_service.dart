@@ -1,5 +1,5 @@
 import 'package:jmlog/data/models/review.dart';
-import 'package:jmlog/data/repositories/reviewRepository.dart';
+import 'package:jmlog/data/repositories/review_repository.dart';
 
 class ReviewService {
   const ReviewService({required ReviewRepository repository})

@@ -20,11 +20,8 @@ Review _$ReviewFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Review {
-  @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'taste')
   int get taste => throw _privateConstructorUsedError;
-  @JsonKey(name: 'date')
   @DateTimeConverter()
   DateTime get date => throw _privateConstructorUsedError;
 
@@ -42,10 +39,7 @@ abstract class $ReviewCopyWith<$Res> {
   factory $ReviewCopyWith(Review value, $Res Function(Review) then) =
       _$ReviewCopyWithImpl<$Res, Review>;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'name') String name,
-      @JsonKey(name: 'taste') int taste,
-      @JsonKey(name: 'date') @DateTimeConverter() DateTime date});
+  $Res call({String name, int taste, @DateTimeConverter() DateTime date});
 }
 
 /// @nodoc
@@ -91,10 +85,7 @@ abstract class _$$ReviewImplCopyWith<$Res> implements $ReviewCopyWith<$Res> {
       __$$ReviewImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'name') String name,
-      @JsonKey(name: 'taste') int taste,
-      @JsonKey(name: 'date') @DateTimeConverter() DateTime date});
+  $Res call({String name, int taste, @DateTimeConverter() DateTime date});
 }
 
 /// @nodoc
@@ -135,22 +126,19 @@ class __$$ReviewImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ReviewImpl extends _Review {
   const _$ReviewImpl(
-      {@JsonKey(name: 'name') required this.name,
-      @JsonKey(name: 'taste') required this.taste,
-      @JsonKey(name: 'date') @DateTimeConverter() required this.date})
+      {required this.name,
+      required this.taste,
+      @DateTimeConverter() required this.date})
       : super._();
 
   factory _$ReviewImpl.fromJson(Map<String, dynamic> json) =>
       _$$ReviewImplFromJson(json);
 
   @override
-  @JsonKey(name: 'name')
   final String name;
   @override
-  @JsonKey(name: 'taste')
   final int taste;
   @override
-  @JsonKey(name: 'date')
   @DateTimeConverter()
   final DateTime date;
 
@@ -191,23 +179,18 @@ class _$ReviewImpl extends _Review {
 
 abstract class _Review extends Review {
   const factory _Review(
-      {@JsonKey(name: 'name') required final String name,
-      @JsonKey(name: 'taste') required final int taste,
-      @JsonKey(name: 'date')
-      @DateTimeConverter()
-      required final DateTime date}) = _$ReviewImpl;
+      {required final String name,
+      required final int taste,
+      @DateTimeConverter() required final DateTime date}) = _$ReviewImpl;
   const _Review._() : super._();
 
   factory _Review.fromJson(Map<String, dynamic> json) = _$ReviewImpl.fromJson;
 
   @override
-  @JsonKey(name: 'name')
   String get name;
   @override
-  @JsonKey(name: 'taste')
   int get taste;
   @override
-  @JsonKey(name: 'date')
   @DateTimeConverter()
   DateTime get date;
 

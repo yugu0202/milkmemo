@@ -9,9 +9,9 @@ part 'review.g.dart';
 class Review with _$Review {
   const Review._();
   const factory Review({
-    @JsonKey(name: 'name') required String name,
-    @JsonKey(name: 'taste') required int taste,
-    @JsonKey(name: 'date') @DateTimeConverter() required DateTime date,
+    required String name,
+    required int taste,
+    @DateTimeConverter() required DateTime date,
   }) = _Review;
 
   factory Review.fromJson(Map<String, dynamic> json) => _$ReviewFromJson(json);

@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'ReviewProvider.dart';
+part of 'review_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getReviewsHash() => r'8581b582f51329f3c50f93d567bc117d647afaec';
+String _$reviewHash() => r'15eac1474a50edfd030c9e864cdf2bcb96311920';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,27 +29,27 @@ class _SystemHash {
   }
 }
 
-/// See also [getReviews].
-@ProviderFor(getReviews)
-const getReviewsProvider = GetReviewsFamily();
+/// See also [review].
+@ProviderFor(review)
+const reviewProvider = ReviewFamily();
 
-/// See also [getReviews].
-class GetReviewsFamily extends Family<AsyncValue<List<Review>>> {
-  /// See also [getReviews].
-  const GetReviewsFamily();
+/// See also [review].
+class ReviewFamily extends Family<AsyncValue<List<Review>>> {
+  /// See also [review].
+  const ReviewFamily();
 
-  /// See also [getReviews].
-  GetReviewsProvider call(
+  /// See also [review].
+  ReviewProvider call(
     String id,
   ) {
-    return GetReviewsProvider(
+    return ReviewProvider(
       id,
     );
   }
 
   @override
-  GetReviewsProvider getProviderOverride(
-    covariant GetReviewsProvider provider,
+  ReviewProvider getProviderOverride(
+    covariant ReviewProvider provider,
   ) {
     return call(
       provider.id,
@@ -68,32 +68,31 @@ class GetReviewsFamily extends Family<AsyncValue<List<Review>>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'getReviewsProvider';
+  String? get name => r'reviewProvider';
 }
 
-/// See also [getReviews].
-class GetReviewsProvider extends AutoDisposeFutureProvider<List<Review>> {
-  /// See also [getReviews].
-  GetReviewsProvider(
+/// See also [review].
+class ReviewProvider extends AutoDisposeFutureProvider<List<Review>> {
+  /// See also [review].
+  ReviewProvider(
     String id,
   ) : this._internal(
-          (ref) => getReviews(
-            ref as GetReviewsRef,
+          (ref) => review(
+            ref as ReviewRef,
             id,
           ),
-          from: getReviewsProvider,
-          name: r'getReviewsProvider',
+          from: reviewProvider,
+          name: r'reviewProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$getReviewsHash,
-          dependencies: GetReviewsFamily._dependencies,
-          allTransitiveDependencies:
-              GetReviewsFamily._allTransitiveDependencies,
+                  : _$reviewHash,
+          dependencies: ReviewFamily._dependencies,
+          allTransitiveDependencies: ReviewFamily._allTransitiveDependencies,
           id: id,
         );
 
-  GetReviewsProvider._internal(
+  ReviewProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -107,12 +106,12 @@ class GetReviewsProvider extends AutoDisposeFutureProvider<List<Review>> {
 
   @override
   Override overrideWith(
-    FutureOr<List<Review>> Function(GetReviewsRef provider) create,
+    FutureOr<List<Review>> Function(ReviewRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: GetReviewsProvider._internal(
-        (ref) => create(ref as GetReviewsRef),
+      override: ReviewProvider._internal(
+        (ref) => create(ref as ReviewRef),
         from: from,
         name: null,
         dependencies: null,
@@ -125,12 +124,12 @@ class GetReviewsProvider extends AutoDisposeFutureProvider<List<Review>> {
 
   @override
   AutoDisposeFutureProviderElement<List<Review>> createElement() {
-    return _GetReviewsProviderElement(this);
+    return _ReviewProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is GetReviewsProvider && other.id == id;
+    return other is ReviewProvider && other.id == id;
   }
 
   @override
@@ -144,17 +143,17 @@ class GetReviewsProvider extends AutoDisposeFutureProvider<List<Review>> {
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-mixin GetReviewsRef on AutoDisposeFutureProviderRef<List<Review>> {
+mixin ReviewRef on AutoDisposeFutureProviderRef<List<Review>> {
   /// The parameter `id` of this provider.
   String get id;
 }
 
-class _GetReviewsProviderElement
-    extends AutoDisposeFutureProviderElement<List<Review>> with GetReviewsRef {
-  _GetReviewsProviderElement(super.provider);
+class _ReviewProviderElement
+    extends AutoDisposeFutureProviderElement<List<Review>> with ReviewRef {
+  _ReviewProviderElement(super.provider);
 
   @override
-  String get id => (origin as GetReviewsProvider).id;
+  String get id => (origin as ReviewProvider).id;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
