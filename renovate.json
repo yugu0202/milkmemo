@@ -7,5 +7,6 @@
       "automerge": true
     }
   ],
-  "prConcurrentLimit": 10
+  "prConcurrentLimit": 10,
+  "commitMessagePrefix": "[renovate]"
 }
