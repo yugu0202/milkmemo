@@ -1,0 +1,12 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "enabledManagers": ["pub"],
+  "packageRules": [
+    {
+      "matchManagers": ["pub"],
+      "automerge": true
+    }
+  ],
+  "prConcurrentLimit": 10,
+  "commitMessagePrefix": "[renovate]"
+}

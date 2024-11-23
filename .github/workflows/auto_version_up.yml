@@ -7,6 +7,7 @@ on:
             - main
         paths-ignore:
             - '.github/workflows/**'
+            - './renovate.json'
 
 permissions:
     contents: write
@@ -35,11 +36,14 @@ jobs:
                     echo "VERSION_TYPE=minor" >> $GITHUB_OUTPUT
                 elif [[ "${PR_TITLE}" =~ ^\[patch\] ]]; then
                     echo "VERSION_TYPE=patch" >> $GITHUB_OUTPUT
+                elif [[ "${PR_TITLE}" =~ ^\[renovate\] ]]; then
+                    echo "VERSION_TYPE=patch" >> $GITHUB_OUTPUT
                 else
                     echo "VERSION_TYPE=patch" >> $GITHUB_OUTPUT
                 fi
 
             - name: Auto Version Up
+              if : ${{ steps.determine_version_type.outputs.VERSION_TYPE }} != 'none'
               id: auto_version_up
               run: |
                 OLD_VERSION=$(grep -oP 'version: \K[0-9]+\.[0-9]+\.[0-9]+\+[0-9]+' ${{ env.FILE_PATH }})
@@ -67,6 +71,7 @@ jobs:
                 sed -i "s/version: ${OLD_VERSION}/version: ${NEW_VERSION}/" ${{ env.FILE_PATH }}
             
             - name: Add and commit
+              if : ${{ steps.determine_version_type.outputs.VERSION_TYPE }} != 'none'
               uses: EndBug/add-and-commit@v9
               with:
                 new_branch: version/v${{ steps.auto_version_up.outputs.NEW_VERSION }}
@@ -74,6 +79,7 @@ jobs:
                 add: ${{ env.FILE_PATH }}
 
             - name: Create PR
+              if : ${{ steps.determine_version_type.outputs.VERSION_TYPE }} != 'none'
               env:
                 GH_TOKEN: ${{ github.token }}
               run: |
