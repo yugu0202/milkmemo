@@ -4,7 +4,7 @@
   "packageRules": [
     {
       "matchManagers": ["pub"],
-      "autoMerge": true
+      "automerge": true
     }
   ],
   "prConcurrentLimit": 10
