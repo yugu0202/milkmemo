@@ -3,10 +3,10 @@
   "enabledManagers": ["pub"],
   "packageRules": [
     {
-      "matchManagers": ["pub"],
-      "automerge": true
+      "matchManagers": ["pub"]
     }
   ],
   "prConcurrentLimit": 10,
+  "reviewers": ["yugu0202"],
   "commitMessagePrefix": "[renovate]"
 }
