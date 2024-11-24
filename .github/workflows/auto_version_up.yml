@@ -74,6 +74,8 @@ jobs:
               if : ${{ steps.determine_version_type.outputs.VERSION_TYPE }} != 'none'
               uses: EndBug/add-and-commit@v9
               with:
+                author_name: github-actions[bot]
+                author_email: 41898282+github-actions[bot]@users.noreply.github.com
                 new_branch: version/v${{ steps.auto_version_up.outputs.NEW_VERSION }}
                 message: "Version up to v${{ steps.auto_version_up.outputs.NEW_VERSION }}"
                 add: ${{ env.FILE_PATH }}
