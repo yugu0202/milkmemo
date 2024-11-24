@@ -1,7 +1,7 @@
 name: Push Back iOS
 
 on:
-  push:
+  pull_request:
     branches:
       - main
 
@@ -16,10 +16,7 @@ permissions:
 jobs:
     push_back_diffs_if_needed:
         name: Push back diffs after resolving dependencies if needed
-        runs-on: ubuntu-latest
-        defaults:
-            run:
-                working-directory: jmlog
+        runs-on: macos-latest
         steps:
             - uses: actions/checkout@v4
               with:
@@ -34,11 +31,12 @@ jobs:
             - uses: subosito/flutter-action@v2
               with:
                 channel: stable
-                flutter-version-file: pubspec.yaml
+                flutter-version-file: jmlog/pubspec.yaml
 
             - name: Install iOS dependencies
               run: |
-                flutter pub get --no-examples
+                cd jmlog
+                flutter pub get
                 flutter precache --ios
                 cd ios
                 pod install
