@@ -36,7 +36,7 @@ jobs:
             - name: Install iOS dependencies
               run: |
                 cd jmlog
-                flutter pub get --no-examples
+                flutter pub get
                 flutter precache --ios
                 cd ios
                 pod install
