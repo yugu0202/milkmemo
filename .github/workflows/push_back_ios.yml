@@ -1,0 +1,51 @@
+name: Push Back iOS
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
+
+permissions:
+    contents: read
+    pull-requests: write
+
+jobs:
+    push_back_diffs_if_needed:
+        name: Push back diffs after resolving dependencies if needed
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: jmlog
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                ref: ${{ github.head_ref }}
+                fetch-depth: 0
+            
+            - uses: actions/setup-java@v4
+              with:
+                distribution: temurin
+                java-version: 17
+            
+            - uses: subosito/flutter-action@v2
+              with:
+                channel: stable
+                flutter-version-file: pubspec.yaml
+
+            - name: Install iOS dependencies
+              run: |
+                flutter pub get --no-examples
+                flutter precache --ios
+                cd ios
+                pod install
+            
+            - uses: EndBug/add-and-commit@v7
+              with:
+                author_name: github-actions[bot]
+                author_email: 41898282+github-actions[bot]@users.noreply.github.com
+                add: .
+                message: "Push back iOS"
