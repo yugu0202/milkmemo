@@ -17,9 +17,6 @@ jobs:
     push_back_diffs_if_needed:
         name: Push back diffs after resolving dependencies if needed
         runs-on: ubuntu-latest
-        defaults:
-            run:
-                working-directory: jmlog
         steps:
             - uses: actions/checkout@v4
               with:
@@ -34,10 +31,11 @@ jobs:
             - uses: subosito/flutter-action@v2
               with:
                 channel: stable
-                flutter-version-file: pubspec.yaml
+                flutter-version-file: jmlog/pubspec.yaml
 
             - name: Install iOS dependencies
               run: |
+                cd jmlog
                 flutter pub get --no-examples
                 flutter precache --ios
                 cd ios
