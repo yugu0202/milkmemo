@@ -1,7 +1,7 @@
 name: Push Back iOS
 
 on:
-  push:
+  pull_request:
     branches:
       - main
 
